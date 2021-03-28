@@ -37,10 +37,14 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="pDz-VK-X3s" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3xU-MR-Aa3"/>
                 <constraint firstAttribute="bottom" secondItem="pDz-VK-X3s" secondAttribute="bottom" id="9Pu-7g-FhW"/>
                 <constraint firstAttribute="trailing" secondItem="pDz-VK-X3s" secondAttribute="trailing" id="SzE-m2-jBR"/>
+                <constraint firstAttribute="trailing" secondItem="pDz-VK-X3s" secondAttribute="trailing" id="WT6-Wz-ccd"/>
                 <constraint firstItem="pDz-VK-X3s" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="hom-rv-BhZ"/>
+                <constraint firstItem="pDz-VK-X3s" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ngW-GS-8CS"/>
                 <constraint firstItem="pDz-VK-X3s" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rZ1-PL-hxE"/>
+                <constraint firstAttribute="bottom" secondItem="pDz-VK-X3s" secondAttribute="bottom" id="z2r-Pi-P6z"/>
             </constraints>
             <connections>
                 <outlet property="imageView" destination="y7f-e8-Gzp" id="mh1-cC-MSp"/>
