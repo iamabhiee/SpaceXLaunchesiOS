@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0j5-Pu-dF9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
+                        <rect key="frame" x="8" y="4" width="304" height="87"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ohF-qq-urW">
-                                <rect key="frame" x="8" y="8" width="304" height="71.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ohF-qq-urW">
+                                <rect key="frame" x="8" y="8" width="288" height="71"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HEy-8l-Ggb">
-                                        <rect key="frame" x="0.0" y="0.0" width="304" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="#1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIO-r6-4c5">
                                                 <rect key="frame" x="0.0" y="0.0" width="18.5" height="20.5"/>
@@ -35,7 +35,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5k-cK-Yxe">
-                                                <rect key="frame" x="26.5" y="0.0" width="277.5" height="20.5"/>
+                                                <rect key="frame" x="26.5" y="0.0" width="261.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                 <color key="textColor" name="primaryColor"/>
                                                 <nil key="highlightedColor"/>
@@ -43,24 +43,24 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uu-3e-w44">
-                                        <rect key="frame" x="0.0" y="24.5" width="304" height="18"/>
+                                        <rect key="frame" x="0.0" y="28.5" width="288" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EG0-Hy-ej7">
-                                        <rect key="frame" x="0.0" y="46.5" width="304" height="25"/>
+                                        <rect key="frame" x="0.0" y="54.5" width="288" height="16.5"/>
                                         <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="ic-upcoming" translatesAutoresizingMaskIntoConstraints="NO" id="SSS-HH-Z1E">
+                                                <rect key="frame" x="0.0" y="0.0" width="16.5" height="16.5"/>
+                                                <color key="tintColor" name="primaryColor"/>
+                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hrk-3Q-23K">
-                                                <rect key="frame" x="0.0" y="0.0" width="271" height="25"/>
+                                                <rect key="frame" x="24.5" y="0.0" width="263.5" height="16.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="ic-upcoming" translatesAutoresizingMaskIntoConstraints="NO" id="SSS-HH-Z1E">
-                                                <rect key="frame" x="279" y="0.0" width="25" height="25"/>
-                                                <color key="tintColor" name="primaryColor"/>
-                                            </imageView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -76,10 +76,10 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="0j5-Pu-dF9" secondAttribute="trailing" id="1Mx-4H-G4u"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="0j5-Pu-dF9" secondAttribute="bottom" id="8O3-ve-C9d"/>
-                    <constraint firstItem="0j5-Pu-dF9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="pjV-oh-Z8S"/>
-                    <constraint firstItem="0j5-Pu-dF9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sph-77-pvJ"/>
+                    <constraint firstAttribute="trailing" secondItem="0j5-Pu-dF9" secondAttribute="trailing" constant="8" id="1Mx-4H-G4u"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="0j5-Pu-dF9" secondAttribute="bottom" constant="4" id="8O3-ve-C9d"/>
+                    <constraint firstItem="0j5-Pu-dF9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="pjV-oh-Z8S"/>
+                    <constraint firstItem="0j5-Pu-dF9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="sph-77-pvJ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -94,9 +94,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic-upcoming" width="25" height="25"/>
+        <image name="ic-upcoming" width="16.666666030883789" height="16.666666030883789"/>
         <namedColor name="primaryColor">
-            <color red="0.0" green="0.32156862745098042" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.082352941176470587" green="0.21176470588235294" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

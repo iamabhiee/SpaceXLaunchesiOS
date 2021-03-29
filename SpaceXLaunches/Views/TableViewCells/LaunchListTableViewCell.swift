@@ -41,5 +41,6 @@ class LaunchListTableViewCell: UITableViewCell {
         lblLaunchDetails.text = item.details
         lblLaunchDate.text = item.date
         upcomingLaunchImage.image = item.upcomingImage
+        upcomingLaunchImage.isHidden = (item.upcomingImage == nil)
     }
 }
