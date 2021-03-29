@@ -33,6 +33,7 @@ class LaunchesViewController: UIViewController {
         self.navigationItem.title = viewModel.title
         
         setupUI()
+        bindView()
         fetchData()
     }
     
@@ -44,12 +45,7 @@ class LaunchesViewController: UIViewController {
         tableView.registerXibs(identifiers: [LaunchListTableViewCell.nameOfClass])
     }
     
-    func fetchData() {
-        
-        viewModel.fetchLaunchViewModel().observe(on: MainScheduler.instance).bind(to: tableView.rx.items(cellIdentifier: LaunchListTableViewCell.nameOfClass, cellType: LaunchListTableViewCell.self)) { index, viewModel, cell in
-            cell.item = viewModel
-        }.disposed(by: disposeBag)
-        
+    func bindView() {
         tableView.rx.itemSelected
           .subscribe(onNext: { [weak self] indexPath in
             if let rocketId = self?.viewModel.rocketId(at: indexPath.row) {
@@ -58,6 +54,12 @@ class LaunchesViewController: UIViewController {
                 self?.navigationController?.pushViewController(rocketsViewController, animated: true)
             }
           }).disposed(by: disposeBag)
-
+    }
+    
+    func fetchData() {
+        
+        viewModel.fetchLaunchViewModel().observe(on: MainScheduler.instance).bind(to: tableView.rx.items(cellIdentifier: LaunchListTableViewCell.nameOfClass, cellType: LaunchListTableViewCell.self)) { index, viewModel, cell in
+            cell.item = viewModel
+        }.disposed(by: disposeBag)
     }
 }

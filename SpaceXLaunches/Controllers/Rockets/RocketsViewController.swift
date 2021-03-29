@@ -33,8 +33,8 @@ class RocketsViewController: UIViewController {
         super.viewDidLoad()
 
         setupUI()
-        fetchData()
         bindViews()
+        fetchData()
     }
     
     func setupUI() {
@@ -49,6 +49,7 @@ class RocketsViewController: UIViewController {
         rocketImageCollectionView.collectionViewLayout = flowLayout
         
         rocketImageCollectionView.registerXibs(identifiers: [MImageCollectionViewCell.nameOfClass])
+        
         
         rocketImagePageControl.hidesForSinglePage = true
         rocketImagePageControl.addTarget(self, action: #selector(pageControllerValueChange(_:)), for: .valueChanged)
