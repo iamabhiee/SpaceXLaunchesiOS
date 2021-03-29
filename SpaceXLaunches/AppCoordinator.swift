@@ -12,19 +12,19 @@ protocol AppCoordinatorProtocol : class {
     func redirectToDetails(for rocketId : String)
 }
 
-class AppCoordinator : AppCoordinatorProtocol {
+class AppCoordinator {
     let window : UIWindow?
     var rootNavigationController : UINavigationController?
     
     init(with window : UIWindow?) {
         self.window = window
     }
-    
+}
+
+extension AppCoordinator : AppCoordinatorProtocol {
     func start() {
         let launchService = LaunchService()
         let viewModel = LaunchListViewModel(service: launchService, coordinator: self)
-        
-        viewModel.coordinator = self
         let vc = LaunchesViewController.instantiate(viewModel: viewModel)
         rootNavigationController = UINavigationController(rootViewController: vc)
         window?.rootViewController = rootNavigationController
