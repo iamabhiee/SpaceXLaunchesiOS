@@ -13,7 +13,7 @@
         <!--Launches-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Launches" id="BYZ-38-t0r" customClass="LaunchesViewController" customModule="SpaceXLaunches" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchesViewController" title="Launches" id="BYZ-38-t0r" customClass="LaunchesViewController" customModule="SpaceXLaunches" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,7 +35,6 @@
                     <navigationItem key="navigationItem" id="nPM-Va-Caf"/>
                     <connections>
                         <outlet property="tableView" destination="uxm-S4-ywG" id="uhX-dT-Nfs"/>
-                        <segue destination="0Th-o7-2Kz" kind="show" id="rB9-pd-8kP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -50,7 +49,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nbL-Vh-0Mo">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" name="AccentColor"/>
+                        <color key="barTintColor" name="primaryColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
@@ -73,7 +72,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ywx-Z8-lc7">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8AY-Ap-RK2">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="211"/>
@@ -94,6 +93,7 @@
                                             </collectionView>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="FsS-UT-tb5">
                                                 <rect key="frame" x="0.0" y="181" width="414" height="30"/>
+                                                <color key="tintColor" name="primaryColor"/>
                                                 <color key="pageIndicatorTintColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="currentPageIndicatorTintColor" name="AccentColor"/>
                                             </pageControl>
@@ -113,13 +113,14 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9X0-6r-nij">
-                                        <rect key="frame" x="0.0" y="211" width="414" height="497"/>
+                                        <rect key="frame" x="0.0" y="211" width="414" height="541"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hbv-yZ-BfV">
                                                 <rect key="frame" x="16" y="16" width="382" height="46.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OB4-uf-3tQ">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
+                                                        <color key="tintColor" name="primaryColor"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                         <color key="textColor" name="AccentColor"/>
                                                         <nil key="highlightedColor"/>
@@ -141,11 +142,11 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dF1-Wl-hfi">
-                                        <rect key="frame" x="0.0" y="708" width="414" height="66"/>
+                                        <rect key="frame" x="0.0" y="752" width="414" height="66"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0G-Ul-9RU">
                                                 <rect key="frame" x="16" y="8" width="382" height="50"/>
-                                                <color key="backgroundColor" name="AccentColor"/>
+                                                <color key="backgroundColor" name="primaryColor"/>
                                                 <state key="normal" title="More Details"/>
                                                 <connections>
                                                     <action selector="actionDetails" destination="0Th-o7-2Kz" eventType="touchUpInside" id="UbL-SK-FVn"/>
@@ -204,6 +205,9 @@
     <resources>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primaryColor">
+            <color red="0.0" green="0.32156862745098042" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

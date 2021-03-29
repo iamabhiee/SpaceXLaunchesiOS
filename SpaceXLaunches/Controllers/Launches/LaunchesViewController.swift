@@ -6,39 +6,34 @@
 //
 
 import UIKit
-
-extension NSObject {
-    class var nameOfClass: String {
-        return NSStringFromClass(self).components(separatedBy: ".").last! as String
-    }
-    
-    class var classIdentifier: String {
-        return String(format: "%@", self.nameOfClass)
-    }
-}
-
-extension UITableView {
-    func registerXibs(identifiers : [String]) {
-        identifiers.forEach { (identifier) in
-            self.register(UINib(nibName: identifier, bundle: nil), forCellReuseIdentifier: identifier)
-        }
-    }
-}
+import RxSwift
+import RxCocoa
 
 class LaunchesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var launches: [Launch] = []
     private var fetchSession: URLSessionDataTask?
+    
+    let disposeBag = DisposeBag()
+    private var viewModel : LaunchListViewModel!
+    
+    static func instantiate(viewModel : LaunchListViewModel) -> LaunchesViewController {
+        let storyboard = UIStoryboard.main
+        let viewController = storyboard.instantiateViewController(withIdentifier: self.nameOfClass) as! LaunchesViewController
+        viewController.viewModel = viewModel
+        
+        return viewController
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationItem.title = "Launches"
+        self.navigationItem.title = viewModel.title
         
         setupUI()
+        bindView()
         fetchData()
     }
     
@@ -48,75 +43,23 @@ class LaunchesViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         tableView.registerXibs(identifiers: [LaunchListTableViewCell.nameOfClass])
-        tableView.dataSource = self
-        tableView.delegate = self
+    }
+    
+    func bindView() {
+        tableView.rx.itemSelected
+          .subscribe(onNext: { [weak self] indexPath in
+            if let rocketId = self?.viewModel.rocketId(at: indexPath.row) {
+                let rocketViewModel = RocketDetailsViewModel(rocketId: rocketId)
+                let rocketsViewController = RocketsViewController.instantiate(viewModel: rocketViewModel)
+                self?.navigationController?.pushViewController(rocketsViewController, animated: true)
+            }
+          }).disposed(by: disposeBag)
     }
     
     func fetchData() {
-        let service = LaunchesServiceRequests()
-        self.showProgressView()
-        service.getAllLaunches { [weak self] apiResult in
-            DispatchQueue.main.async {
-                self?.hideProgressView()
-                switch apiResult {
-                case .success(let launchList):
-                    let allLaunches = launchList
-                    let filtedLaunchhes = allLaunches.filter({ (launch) -> Bool in
-                        
-                        // Filter only last 3 years data
-                        let currentYear = Calendar.current.component(.year, from: Date())
-                        let lastThreeYears = [currentYear, currentYear-1, currentYear-2]
-                        
-                        if let launchDate = Date.dateFromUTCServerDate(date: launch.date_utc), lastThreeYears.contains(Calendar.current.component(.year, from: launchDate)) {
-                            
-                            let successfulLaunch = (launch.success == true)
-                            let upcomingLaunch = launchDate > Date()
-                            
-                            if successfulLaunch || upcomingLaunch  {
-                                return true
-                            } else {
-                                return false
-                            }
-                        }
-                        
-                        return false
-                    })
-                    self?.launches = filtedLaunchhes
-                    self?.tableView.reloadData()
-                case .failure(let error):
-                    self?.showAPIError(message: error.localizedDescription)
-                }
-            }
-        }
+        
+        viewModel.fetchLaunchViewModel().observe(on: MainScheduler.instance).bind(to: tableView.rx.items(cellIdentifier: LaunchListTableViewCell.nameOfClass, cellType: LaunchListTableViewCell.self)) { index, viewModel, cell in
+            cell.item = viewModel
+        }.disposed(by: disposeBag)
     }
 }
-
-extension LaunchesViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.launches.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let launch = self.launches[indexPath.row]
-        
-        if let cell = tableView.dequeueReusableCell(withIdentifier: LaunchListTableViewCell.nameOfClass, for: indexPath) as? LaunchListTableViewCell {
-            cell.configure(with: launch)
-            return cell
-        }
-        
-        return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let launch = self.launches[indexPath.row]
-        RocketsViewController.present(from: self, rocketId: launch.rocket)
-    }
-    
-}
-

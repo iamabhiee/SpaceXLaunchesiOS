@@ -14,6 +14,13 @@ class LaunchListTableViewCell: UITableViewCell {
     @IBOutlet weak var lblLaunchDetails : UILabel!
     @IBOutlet weak var lblLaunchDate : UILabel!
     @IBOutlet weak var upcomingLaunchImage : UIImageView!
+    
+    var item: LaunchViewModel! {
+        didSet {
+            setLaunchData()
+        }
+    }
+
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,21 +35,11 @@ class LaunchListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(with launch : Launch) {
-        let number = launch.flight_number ?? 0
-        lblLaunchNumber.text = "#\(number)"
-        lblLaunchName.text = launch.name
-        lblLaunchDetails.text = launch.details
-        
-        if let date = launch.date_utc, let launchDate = Date.dateFromUTCServerDate(date: date) {
-            lblLaunchDate.text = launchDate.toLocalTimeString()
-            
-            if launchDate > Date() {
-                upcomingLaunchImage.isHidden = false
-            } else {
-                upcomingLaunchImage.isHidden = true
-            }
-        }
-        
+    private func setLaunchData() {
+        lblLaunchNumber.text = item.number
+        lblLaunchName.text = item.title
+        lblLaunchDetails.text = item.details
+        lblLaunchDate.text = item.date
+        upcomingLaunchImage.image = item.upcomingImage
     }
 }

@@ -7,6 +7,8 @@ target 'SpaceXLaunches' do
 
   # Pods for SpaceXLaunches
   pod 'MBProgressHUD'
-  pod "SDWebImage"
+  pod 'SDWebImage'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 
 end
