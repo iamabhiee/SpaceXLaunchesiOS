@@ -43,7 +43,7 @@
         /**
          Reactive wrapper for `delegate` message `pickerView:didSelectRow:inComponent:`.
          */
-        public var itemSelected: ControlEvent<(row: Int, component: Int)> {
+        public var launchSelected: ControlEvent<(row: Int, component: Int)> {
             let source = delegate
                 .methodInvoked(#selector(UIPickerViewDelegate.pickerView(_:didSelectRow:inComponent:)))
                 .map {
@@ -65,7 +65,7 @@
          - parameter modelType: Type of a Model which bound to the dataSource
          */
         public func modelSelected<T>(_ modelType: T.Type) -> ControlEvent<[T]> {
-            let source = itemSelected.flatMap { [weak view = self.base as UIPickerView] _, component -> Observable<[T]> in
+            let source = launchSelected.flatMap { [weak view = self.base as UIPickerView] _, component -> Observable<[T]> in
                 guard let view = view else {
                     return Observable.empty()
                 }

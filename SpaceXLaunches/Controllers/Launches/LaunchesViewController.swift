@@ -30,14 +30,14 @@ class LaunchesViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationItem.title = viewModel.title
-        
         setupUI()
         bindView()
         fetchData()
     }
     
     func setupUI() {
+        self.navigationItem.title = viewModel.title
+        
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 44;
         tableView.rowHeight = UITableView.automaticDimension
@@ -46,14 +46,10 @@ class LaunchesViewController: UIViewController {
     }
     
     func bindView() {
-        tableView.rx.itemSelected
-          .subscribe(onNext: { [weak self] indexPath in
-            if let rocketId = self?.viewModel.rocketId(at: indexPath.row) {
-                let rocketViewModel = RocketDetailsViewModel(rocketId: rocketId)
-                let rocketsViewController = RocketsViewController.instantiate(viewModel: rocketViewModel)
-                self?.navigationController?.pushViewController(rocketsViewController, animated: true)
-            }
-          }).disposed(by: disposeBag)
+        
+        tableView.rx.launchSelected.observe(on: MainScheduler.instance).subscribe(onNext: { indexPath in
+            self.viewModel.launchSelected(at: indexPath)
+        }).disposed(by: disposeBag)
     }
     
     func fetchData() {

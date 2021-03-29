@@ -11,16 +11,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var appCordinator : AppCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         configureGlobalUI()
         
-        let viewModel = LaunchListViewModel()
-        let vc = LaunchesViewController.instantiate(viewModel: viewModel)
-        let rootNVC = UINavigationController(rootViewController: vc)
-        window?.rootViewController = rootNVC
-        window?.makeKeyAndVisible()
+        appCordinator = AppCoordinator(with: window)
+        appCordinator.start()
         
         return true
     }

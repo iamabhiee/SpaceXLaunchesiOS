@@ -160,7 +160,7 @@ extension Reactive where Base: UITableView {
     /**
     Reactive wrapper for `delegate` message `tableView:didSelectRowAtIndexPath:`.
     */
-    public var itemSelected: ControlEvent<IndexPath> {
+    public var launchSelected: ControlEvent<IndexPath> {
         let source = self.delegate.methodInvoked(#selector(UITableViewDelegate.tableView(_:didSelectRowAt:)))
             .map { a in
                 return try castOrThrow(IndexPath.self, a[1])
@@ -295,7 +295,7 @@ extension Reactive where Base: UITableView {
      ```
     */
     public func modelSelected<T>(_ modelType: T.Type) -> ControlEvent<T> {
-        let source: Observable<T> = self.itemSelected.flatMap { [weak view = self.base as UITableView] indexPath -> Observable<T> in
+        let source: Observable<T> = self.launchSelected.flatMap { [weak view = self.base as UITableView] indexPath -> Observable<T> in
             guard let view = view else {
                 return Observable.empty()
             }

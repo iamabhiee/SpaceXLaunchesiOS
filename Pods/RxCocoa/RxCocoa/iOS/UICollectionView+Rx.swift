@@ -182,7 +182,7 @@ extension Reactive where Base: UICollectionView {
     }
    
     /// Reactive wrapper for `delegate` message `collectionView(_:didSelectItemAtIndexPath:)`.
-    public var itemSelected: ControlEvent<IndexPath> {
+    public var launchSelected: ControlEvent<IndexPath> {
         let source = delegate.methodInvoked(#selector(UICollectionViewDelegate.collectionView(_:didSelectItemAt:)))
             .map { a in
                 return try castOrThrow(IndexPath.self, a[1])
@@ -275,7 +275,7 @@ extension Reactive where Base: UICollectionView {
     ///        .map { ...
     /// ```
     public func modelSelected<T>(_ modelType: T.Type) -> ControlEvent<T> {
-        let source: Observable<T> = itemSelected.flatMap { [weak view = self.base as UICollectionView] indexPath -> Observable<T> in
+        let source: Observable<T> = launchSelected.flatMap { [weak view = self.base as UICollectionView] indexPath -> Observable<T> in
             guard let view = view else {
                 return Observable.empty()
             }
