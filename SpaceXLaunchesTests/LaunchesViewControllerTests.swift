@@ -33,7 +33,7 @@ class LaunchesViewControllerTests: XCTestCase {
 
     func testDetailsViewControllerInit() {
         let rocketId = "1"
-        let rocketViewModel = RocketDetailsViewModel(rocketId: rocketId)
+        let rocketViewModel = RocketDetailsViewModel(rocketId: rocketId, coordinator: nil)
         let rocketsViewController = RocketsViewController.instantiate(viewModel: rocketViewModel)
         
         XCTAssertNotNil(rocketsViewController)
