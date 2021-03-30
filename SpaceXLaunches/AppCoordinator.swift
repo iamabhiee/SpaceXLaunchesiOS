@@ -10,6 +10,7 @@ import UIKit
 protocol AppCoordinatorProtocol : class {
     func start()
     func redirectToDetails(for rocketId : String)
+    func openExternalURL(url : String?)
 }
 
 class AppCoordinator {
@@ -32,8 +33,12 @@ extension AppCoordinator : AppCoordinatorProtocol {
     }
     
     func redirectToDetails(for rocketId : String) {
-        let rocketViewModel = RocketDetailsViewModel(rocketId: rocketId)
+        let rocketViewModel = RocketDetailsViewModel(rocketId: rocketId, coordinator: self)
         let rocketsViewController = RocketsViewController.instantiate(viewModel: rocketViewModel)
         self.rootNavigationController?.pushViewController(rocketsViewController, animated: true)
+    }
+    
+    func openExternalURL(url: String?) {
+        self.rootNavigationController?.visibleViewController?.openInSafari(url: url)
     }
 }

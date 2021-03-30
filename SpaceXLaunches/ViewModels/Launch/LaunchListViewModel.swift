@@ -8,8 +8,16 @@
 import Foundation
 import RxSwift
 
+protocol LaunchListViewModelProtocol {
+    var title : String { get }
+    
+    func fetchLaunchViewModel() -> Observable<[LaunchViewModel]>
+    func rocketId(at index : Int) -> String
+    func launchSelected(at indexPath : IndexPath)
+}
+
 public class LaunchListViewModel {
-    let title = "Launches"
+    var title = "Launches"
     
     private let launchService : LaunchServiceProtocol
     private var launches: [Launch] = []
@@ -19,7 +27,9 @@ public class LaunchListViewModel {
         self.launchService = service
         self.coordinator = coordinator
     }
-    
+}
+
+extension LaunchListViewModel : LaunchListViewModelProtocol {
     func fetchLaunchViewModel() -> Observable<[LaunchViewModel]> {
         return launchService.fetchLaunches().do(onNext: { [weak self] launches in
             self?.launches = launches

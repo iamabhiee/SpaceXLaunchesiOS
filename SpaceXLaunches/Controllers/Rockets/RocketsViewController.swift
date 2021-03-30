@@ -18,10 +18,10 @@ class RocketsViewController: UIViewController {
     @IBOutlet weak var rocketImagePageControl : UIPageControl!
     
     let disposeBag = DisposeBag()
-    private var viewModel : RocketDetailsViewModel!
+    private var viewModel : RocketDetailsViewModelProtocol!
     private var rocketViewModel : RocketViewModel?
     
-    static func instantiate(viewModel : RocketDetailsViewModel) -> RocketsViewController {
+    static func instantiate(viewModel : RocketDetailsViewModelProtocol) -> RocketsViewController {
         let storyboard = UIStoryboard.main
         let viewController = storyboard.instantiateViewController(withIdentifier: self.nameOfClass) as! RocketsViewController
         viewController.viewModel = viewModel
@@ -95,6 +95,6 @@ class RocketsViewController: UIViewController {
     }
     
     @IBAction func actionDetails() {
-        self.openInSafari(url: self.rocketViewModel?.url)
+        self.viewModel.didTapMoreDetails()
     }
 }
